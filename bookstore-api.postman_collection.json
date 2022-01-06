@@ -31,12 +31,12 @@
 					"formdata": [
 						{
 							"key": "name",
-							"value": "Darth Vader",
+							"value": "Darth Vader new",
 							"type": "text"
 						},
 						{
 							"key": "username",
-							"value": "darth",
+							"value": "darth_w07",
 							"type": "text"
 						},
 						{
@@ -48,6 +48,11 @@
 							"key": "password_confirmation",
 							"value": "12345678",
 							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": "/Users/acareindore/Desktop/Screenshot 2021-12-21 at 6.37.04 PM.png"
 						}
 					]
 				},
@@ -67,54 +72,213 @@
 		{
 			"name": "get token",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "darth_w07",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "get all users",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE1NjAyNjR9.5OfgI-AeTnYj9CU1T2pW-f93xzT8yub6rV_HyoZHzSM",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "localhost:3000/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "get all books",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2NDAyNTM0NzN9.DXy3EdAWxpJ0Phifd_zq_BLV1xdXLl57RNA1HP9AB6s",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "localhost:3000/books",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "create book",
 			"request": {
-				"method": "GET",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE1NjAyNjR9.5OfgI-AeTnYj9CU1T2pW-f93xzT8yub6rV_HyoZHzSM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "new book for w07",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "good book w07",
+							"type": "text"
+						},
+						{
+							"key": "cover_image",
+							"type": "file",
+							"src": "/Users/acareindore/Desktop/Screenshot 2021-12-21 at 3.13.42 PM.png"
+						},
+						{
+							"key": "price",
+							"value": "10",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/books",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "w07",
+							"disabled": true
+						}
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "search book",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE1NjAyNjR9.5OfgI-AeTnYj9CU1T2pW-f93xzT8yub6rV_HyoZHzSM",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "localhost:3000/books?q=w07",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "w07"
+						}
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "destroy book",
 			"request": {
-				"method": "GET",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDE1NjAyNjR9.5OfgI-AeTnYj9CU1T2pW-f93xzT8yub6rV_HyoZHzSM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "localhost:3000/books/3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"3"
+					]
+				}
 			},
 			"response": []
 		}
