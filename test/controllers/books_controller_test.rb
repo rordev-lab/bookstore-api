@@ -40,6 +40,6 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
       delete book_url(@book), headers: @token, as: :json
     end
 
-    assert_response 204
+    assert_response 200
   end
 end

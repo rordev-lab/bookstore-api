@@ -10,7 +10,7 @@ class BooksController < ApplicationController
 
   # GET /books/1
   def show
-    render json: @book
+    render json: {book: @book, cover_image: cover_image_url(@book)}
   end
 
   # POST /books
@@ -18,7 +18,7 @@ class BooksController < ApplicationController
     @book = @current_user.books.new(book_params)
 
     if @book.save
-      render json: @book, status: :created, location: @book
+      render json: {book: @book, cover_image: cover_image_url(@book)}, status: :created, location: @book
     else
       render json: @book.errors, status: :unprocessable_entity
     end
@@ -35,7 +35,11 @@ class BooksController < ApplicationController
 
   # DELETE /books/1
   def destroy
-    @book.destroy
+    if @book.destroy
+      render json: @book
+    else
+      render json: @book.errors, status: :unprocessable_entity
+    end
   end
 
   private
@@ -48,6 +52,10 @@ class BooksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def book_params
-      params.permit(:title, :cover_image, :description, :price)
+      params.permit(:title, :cover_image, :description, :price, :publish)
     end
+
+    def cover_image_url(book)
+    book.cover_image.attached? ? url_for(book.cover_image) : 'No image attached'
+  end
 end
